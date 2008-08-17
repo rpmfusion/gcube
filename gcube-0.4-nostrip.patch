@@ -1,0 +1,11 @@
+--- 0.4/Makefile.rules.orig	2005-01-12 13:34:18.000000000 +0000
++++ 0.4/Makefile.rules	2006-10-25 23:00:13.000000000 +0100
+@@ -81,7 +81,7 @@
+ 
+ default: gcmap bin2dol tplx isopack thpview gcube
+ 
+-release:	CFLAGS+=$(OPTFLAGS) -s
++release:	CFLAGS+=$(OPTFLAGS) 
+ profiler:	CFLAGS+=$(PROFLAGS)
+ 
+ all:	default
