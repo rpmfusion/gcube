@@ -1,6 +1,6 @@
 Name:          gcube
 Version:       0.4
-Release:       4%{?dist}
+Release:       5%{?dist}
 Summary:       Nintendo Gamecube emulator
 
 Group:         Applications/Emulators
@@ -16,6 +16,8 @@ BuildRequires: libGLU-devel
 BuildRequires: libjpeg-devel
 BuildRequires: SDL-devel >= 1.2.7
 BuildRequires: zlib-devel
+# ppc64 build does not seem to support asm opcode bswap, so exclude arch
+ExcludeArch:   ppc64
 
 
 %description
@@ -58,6 +60,9 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Mon Sep 22 2008 David Timms <iinet.net.au@dtimms> 0.4-5
+- add ExcludeArch: ppc64 since lack of asm bswap stops build
+
 * Sun Sep 21 2008 David Timms <iinet.net.au@dtimms> 0.4-4
 - initial import into rpmfusion and release bump
 - set license tag to match updated fedora guideline
