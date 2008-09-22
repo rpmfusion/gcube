@@ -1,17 +1,23 @@
-Name:           gcube
-Version:        0.4
-Release:        3%{?dist}
-Summary:        Nintendo Gamecube emulator
-Group:          Applications/Emulators
-License:        GPLv2
-URL:            http://gcube.exemu.net
-Source0:        http://gcube.exemu.net/downloads/%{name}-%{version}-src.tar.bz2
-Patch0:         gcube-0.4-nostrip.patch
-BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
-BuildRequires:  libGLU-devel
-BuildRequires:  libjpeg-devel
-BuildRequires:  SDL-devel >= 1.2.7
-BuildRequires:  zlib-devel
+Name:          gcube
+Version:       0.4
+Release:       5%{?dist}
+Summary:       Nintendo Gamecube emulator
+
+Group:         Applications/Emulators
+License:       GPLv2+
+URL:           http://gcube.exemu.net
+# source is no longer present at original source0.
+# further devel under other project names. md5sum matches dribble original.
+# Source0:       http://gcube.exemu.net/downloads/%{name}-%{version}-src.tar.bz2
+Source0:       http://ftp.netbsd.org/pub/NetBSD/packages/distfiles/%{name}-%{version}-src.tar.bz2
+Patch0:        gcube-0.4-nostrip.patch
+BuildRoot:     %(mktemp -ud %{_tmppath}/%{name}-%{version}-%{release}-XXXXXX)
+BuildRequires: libGLU-devel
+BuildRequires: libjpeg-devel
+BuildRequires: SDL-devel >= 1.2.7
+BuildRequires: zlib-devel
+# ppc64 build does not seem to support asm opcode bswap, so exclude arch
+ExcludeArch:   ppc64
 
 
 %description
@@ -54,6 +60,13 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Mon Sep 22 2008 David Timms <iinet.net.au@dtimms> 0.4-5
+- add ExcludeArch: ppc64 since lack of asm bswap stops build
+
+* Sun Sep 21 2008 David Timms <iinet.net.au@dtimms> 0.4-4
+- initial import into rpmfusion and release bump
+- set license tag to match updated fedora guideline
+
 * Wed Dec 12 2007 Ian Chapman <packages[AT]amiga-hardware.com> 0.4-3
 - Minor spec changes for devel
 - License change due to new guidelines
