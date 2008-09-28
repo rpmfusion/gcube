@@ -1,6 +1,6 @@
 Name:          gcube
 Version:       0.4
-Release:       5%{?dist}
+Release:       6%{?dist}
 Summary:       Nintendo Gamecube emulator
 
 Group:         Applications/Emulators
@@ -16,8 +16,6 @@ BuildRequires: libGLU-devel
 BuildRequires: libjpeg-devel
 BuildRequires: SDL-devel >= 1.2.7
 BuildRequires: zlib-devel
-# ppc64 build does not seem to support asm opcode bswap, so exclude arch
-ExcludeArch:   ppc64
 
 
 %description
@@ -31,10 +29,10 @@ A Nintendo Gamecube emulator which uses SDL
 
 %build
 make release %{?_smp_mflags} CPU="" ENABLE_SOUND=1 OPTFLAGS="%{optflags} -fno-strict-aliasing" \
-%ifarch ppc x86_64
-ASM_X86=0
-%else
+%ifarch %{ix86}
 ASM_X86=1
+%else
+ASM_X86=0
 %endif
 
 
@@ -60,6 +58,10 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Sun Sep 28 2008 David Timms <iinet.net.au@dtimms> 0.4-6
+- mod asm compile logic to retry build on ppc64 builder {adrian, rathann}
+- remove excludearch ppc64
+
 * Mon Sep 22 2008 David Timms <iinet.net.au@dtimms> 0.4-5
 - add ExcludeArch: ppc64 since lack of asm bswap stops build
 
