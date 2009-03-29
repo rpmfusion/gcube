@@ -1,6 +1,6 @@
 Name:          gcube
 Version:       0.4
-Release:       6%{?dist}
+Release:       7%{?dist}
 Summary:       Nintendo Gamecube emulator
 
 Group:         Applications/Emulators
@@ -58,6 +58,9 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Sun Mar 29 2009 Thorsten Leemhuis <fedora [AT] leemhuis [DOT] info> - 0.4-7
+- rebuild for new F11 features
+
 * Sun Sep 28 2008 David Timms <iinet.net.au@dtimms> 0.4-6
 - mod asm compile logic to retry build on ppc64 builder {adrian, rathann}
 - remove excludearch ppc64
