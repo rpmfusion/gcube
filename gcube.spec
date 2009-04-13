@@ -1,6 +1,6 @@
 Name:          gcube
 Version:       0.4
-Release:       7%{?dist}
+Release:       8%{?dist}
 Summary:       Nintendo Gamecube emulator
 
 Group:         Applications/Emulators
@@ -11,6 +11,7 @@ URL:           http://gcube.exemu.net
 # Source0:       http://gcube.exemu.net/downloads/%{name}-%{version}-src.tar.bz2
 Source0:       http://ftp.netbsd.org/pub/NetBSD/packages/distfiles/%{name}-%{version}-src.tar.bz2
 Patch0:        gcube-0.4-nostrip.patch
+Patch1:        gcube-0.4-gcc44-types.patch
 BuildRoot:     %(mktemp -ud %{_tmppath}/%{name}-%{version}-%{release}-XXXXXX)
 BuildRequires: libGLU-devel
 BuildRequires: libjpeg-devel
@@ -24,7 +25,8 @@ A Nintendo Gamecube emulator which uses SDL
 
 %prep
 %setup -qn %{version}
-%patch0 -p1
+%patch0 -p1 -b .nostrip
+%patch1 -b .gcc44-types
 
 
 %build
@@ -58,6 +60,9 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Mon Apr 13 2009 David Timms <iinet.net.au@dtimms> 0.4-8
+- fix conflicting types in types.h by using <asm/types.h>
+
 * Sun Mar 29 2009 Thorsten Leemhuis <fedora [AT] leemhuis [DOT] info> - 0.4-7
 - rebuild for new F11 features
 
