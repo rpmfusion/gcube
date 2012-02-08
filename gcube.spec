@@ -1,6 +1,6 @@
 Name:          gcube
 Version:       0.4
-Release:       8%{?dist}
+Release:       9%{?dist}
 Summary:       Nintendo Gamecube emulator
 
 Group:         Applications/Emulators
@@ -60,6 +60,9 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Wed Feb 08 2012 Nicolas Chauvet <kwizart@gmail.com> - 0.4-9
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_17_Mass_Rebuild
+
 * Mon Apr 13 2009 David Timms <iinet.net.au@dtimms> 0.4-8
 - fix conflicting types in types.h by using <asm/types.h>
 
