@@ -1,6 +1,6 @@
 Name:          gcube
 Version:       0.4
-Release:       9%{?dist}
+Release:       10%{?dist}
 Summary:       Nintendo Gamecube emulator
 
 Group:         Applications/Emulators
@@ -27,7 +27,7 @@ A Nintendo Gamecube emulator which uses SDL
 %setup -qn %{version}
 %patch0 -p1 -b .nostrip
 %patch1 -b .gcc44-types
-
+sed -i -e 's/-mno-windows -mcygwin/-lm/' Makefile.rules
 
 %build
 make release %{?_smp_mflags} CPU="" ENABLE_SOUND=1 OPTFLAGS="%{optflags} -fno-strict-aliasing" \
@@ -60,6 +60,9 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Wed May 23 2012 Nicolas Chauvet <kwizart@gmail.com> - 0.4-10
+- Fix FTBFS
+
 * Wed Feb 08 2012 Nicolas Chauvet <kwizart@gmail.com> - 0.4-9
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_17_Mass_Rebuild
 
