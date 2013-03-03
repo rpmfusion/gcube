@@ -1,6 +1,6 @@
 Name:          gcube
 Version:       0.4
-Release:       10%{?dist}
+Release:       11%{?dist}
 Summary:       Nintendo Gamecube emulator
 
 Group:         Applications/Emulators
@@ -60,6 +60,9 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Sun Mar 03 2013 Nicolas Chauvet <kwizart@gmail.com> - 0.4-11
+- Mass rebuilt for Fedora 19 Features
+
 * Wed May 23 2012 Nicolas Chauvet <kwizart@gmail.com> - 0.4-10
 - Fix FTBFS
 
