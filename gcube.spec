@@ -1,9 +1,7 @@
 Name:          gcube
 Version:       0.4
-Release:       12%{?dist}
+Release:       13%{?dist}
 Summary:       Nintendo Gamecube emulator
-
-Group:         Applications/Emulators
 License:       GPLv2+
 URL:           http://gcube.exemu.net
 # source is no longer present at original source0.
@@ -12,7 +10,7 @@ URL:           http://gcube.exemu.net
 Source0:       http://ftp.netbsd.org/pub/NetBSD/packages/distfiles/%{name}-%{version}-src.tar.bz2
 Patch0:        gcube-0.4-nostrip.patch
 Patch1:        gcube-0.4-gcc44-types.patch
-BuildRoot:     %(mktemp -ud %{_tmppath}/%{name}-%{version}-%{release}-XXXXXX)
+Patch2:        gcube-0.4-fix-inline-usage.patch
 BuildRequires: libGLU-devel
 BuildRequires: libjpeg-devel
 BuildRequires: SDL-devel >= 1.2.7
@@ -27,6 +25,7 @@ A Nintendo Gamecube emulator which uses SDL
 %setup -qn %{version}
 %patch0 -p1 -b .nostrip
 %patch1 -b .gcc44-types
+%patch2 -p1
 sed -i -e 's/-mno-windows -mcygwin/-lm/' Makefile.rules
 
 %build
@@ -39,7 +38,6 @@ ASM_X86=0
 
 
 %install
-rm -rf %{buildroot}
 mkdir -p %{buildroot}%{_bindir}
 install -m0755 bin2dol %{buildroot}%{_bindir}
 install -m0755 gcmap %{buildroot}%{_bindir}
@@ -49,17 +47,15 @@ install -m0755 thpview %{buildroot}%{_bindir}
 install -m0755 tplx %{buildroot}%{_bindir}
 
 
-%clean
-rm -rf %{buildroot}
-
-
 %files
-%defattr(-,root,root,-)
 %{_bindir}/*
 %doc COPYING README README.debug
 
 
 %changelog
+* Sat May 16 2015 Hans de Goede <j.w.r.degoede@gmail.com> - 0.4-13
+- Fix FTBFS (rf#3630)
+
 * Sun Aug 31 2014 Sérgio Basto <sergio@serjux.com> - 0.4-12
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_21_22_Mass_Rebuild
 
