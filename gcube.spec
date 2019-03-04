@@ -1,6 +1,6 @@
 Name:          gcube
 Version:       0.4
-Release:       19%{?dist}
+Release:       20%{?dist}
 Summary:       Nintendo Gamecube emulator
 License:       GPLv2+
 URL:           http://gcube.exemu.net
@@ -53,6 +53,9 @@ install -m0755 tplx %{buildroot}%{_bindir}
 
 
 %changelog
+* Mon Mar 04 2019 RPM Fusion Release Engineering <leigh123linux@gmail.com> - 0.4-20
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_30_Mass_Rebuild
+
 * Sun Aug 19 2018 Leigh Scott <leigh123linux@googlemail.com> - 0.4-19
 - Rebuilt for Fedora 29 Mass Rebuild binutils issue
 
