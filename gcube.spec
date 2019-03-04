@@ -11,6 +11,7 @@ Source0:       http://ftp.netbsd.org/pub/NetBSD/packages/distfiles/%{name}-%{ver
 Patch0:        gcube-0.4-nostrip.patch
 Patch1:        gcube-0.4-gcc44-types.patch
 Patch2:        gcube-0.4-fix-inline-usage.patch
+BuildRequires: gcc
 BuildRequires: libGLU-devel
 BuildRequires: libjpeg-devel
 BuildRequires: SDL-devel >= 1.2.7
