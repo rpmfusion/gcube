@@ -1,3 +1,5 @@
+%global _lto_cflags %{nil}
+
 Name:          gcube
 Version:       0.4
 Release:       23%{?dist}
